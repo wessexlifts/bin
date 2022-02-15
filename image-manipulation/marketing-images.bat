@@ -7,49 +7,54 @@ setlocal enabledelayedexpansion
 :: Tag Added:  2022-02-11
 :: Desciption: Uses ImageMagick to organise files in these directories
 
-for /r %%a in (oq\*) do (
+magick -version >nul 2>&1 && (
 
-REM // ~nxa Gets File Name Only (the 'a' is %%a)
-	set p=%%a
-	set f=%%~nxa
-REM // ~dpa Gets The Directory Only
-	set d=%%~dpa
+	for /r %%a in (oq\*) do (
 
-REM // fout
-	set fout=  !f!
+	REM // ~nxa Gets File Name Only (the 'a' is %%a)
+		set p=%%a
+		set f=%%~nxa
+	REM // ~dpa Gets The Directory Only
+		set d=%%~dpa
 
-REM // Update Output (original file name)
-	<NUL set /p ="Formatting !f!"
+	REM // fout
+		set fout=  !f!
 
-REM // Remove Brackets
-	set f=!f:^(=!
-	set f=!f:^)=!
-	set f=!f: =-!
+	REM // Update Output (original file name)
+		<NUL set /p ="Formatting !f:~-9!"
 
-REM // JPG File Fix Cases
-	set f=!f:^JPG=jpg!
-	set f=!f:^jpeg=jpg!
+	REM // Remove Brackets
+		set f=!f:^(=!
+		set f=!f:^)=!
+		set f=!f: =-!
 
-REM // Rename .jpg File
-	ren "!p!" "!f!"
+	REM // JPG File Fix Cases
+		set f=!f:^JPG=jpg!
+		set f=!f:^jpeg=jpg!
 
-REM // Use ImageMagick to Mirror into \lq Folder
-REM // settings copied from a helpful S/O answer
-	magick convert -strip -interlace Plane -gaussian-blur 0.05 -quality 85% "!d!\!f!" "!d!lq-!f!"
-	echo   !f! - converted to Low Quality
+	REM // Rename .jpg File
+		ren "!p!" "!f!"
 
-REM // Messy, but works
-	cd !d!
-	cd ..\
+	REM // Use ImageMagick to Mirror into \lq Folder
+	REM // settings copied from a helpful S/O answer
+		magick convert -strip -interlace Plane -gaussian-blur 0.05 -quality 85% "!d!\!f!" "!d!lq-!f!"
+		echo   !f! - converted to Low Quality
 
-REM // Make \lq Dir, if it doesn't exist
-	if not exist lq\ mkdir lq
+	REM // Messy, but works
+		cd !d!
+		cd ..\
 
-REM // Copy temp lq file to the new place
-	copy /Y "!d!lq-!f!" "lq\!f!">NUL
+	REM // Make \lq Dir, if it doesn't exist
+		if not exist lq\ mkdir lq
 
-REM // Delete the temporary file
-	del "!d!lq-!f!"
+	REM // Copy temp lq file to the new place
+		copy /Y "!d!lq-!f!" "lq\!f!">NUL
+
+	REM // Delete the temporary file
+		del "!d!lq-!f!"
+	)
+
+) || (
+	echo This script required ImageMagick to run! 
 )
-
 endlocal
