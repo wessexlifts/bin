@@ -1,4 +1,4 @@
-# File:       simple-folder-clean.sh
+# File:       file-extension-normalize.sh
 # Author:     Wessex Lifts <marketing@wessexlifts.co.uk>
 # Tag Added:  2022-03-08
 # Desciption: Clean filenames of filetype in the current folder.

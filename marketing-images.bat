@@ -2,10 +2,10 @@
 
 setlocal enabledelayedexpansion
 
-:: File:       marketing-images.bat
-:: Author:     Julian Orchard [hello@julianorchard.co.uk]
-:: Tag Added:  2022-02-11
-:: Desciption: Uses ImageMagick to organise files in these directories
+::  File:       marketing-images.bat
+::  Author:     Wessex Lifts <marketing@wessexlifts.co.uk>
+::  Tag Added:  2022-03-18
+::  Desciption: Organise files in our Marketing Images folder.
 
 magick -version >nul 2>&1 && (
 
