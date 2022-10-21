@@ -26,7 +26,7 @@ scripts
 
 ## `file-extension-normalize.sh`
 
-A shell script (tested with [Cygwin](https://www.cygwin.com/) to normalize the file extensions in a folder; this is
+A shell script (tested with [Cygwin](https://www.cygwin.com/)) to normalize the file extensions in a folder; this is
 mainly used to rename files from uppercase to
 lowercase (`.JPG` to `.jpg`). JPEG is the default
 filetype chosen, as we have a lot of uppercase JPG
