@@ -2,10 +2,10 @@
 
 setlocal enabledelayedexpansion
 
-::  File:       marketing-images.bat
-::  Author:     Wessex Lifts <marketing@wessexlifts.co.uk>
-::  Tag Added:  2022-03-18
-::  Desciption: Organise files in our Marketing Images folder.
+:: File:        marketing-images.bat
+:: Author:      Julian Orchard <marketing@wessexlifts.co.uk>
+:: Tag Added:   2022-03-18
+:: Description: Organise files in our Marketing Images folder.
 
 magick -version >nul 2>&1 && (
 
@@ -55,6 +55,6 @@ magick -version >nul 2>&1 && (
 	)
 
 ) || (
-	echo This script required ImageMagick to run! 
+	echo This script required ImageMagick to run!
 )
 endlocal
